@@ -1,0 +1,84 @@
+{
+  "name": "unplugin-oss",
+  "type": "module",
+  "version": "0.0.0",
+  "packageManager": "pnpm@11.5.2",
+  "description": "OSS plugin powered by unplugin.",
+  "author": "Drswith <540628938@qq.com>",
+  "license": "MIT",
+  "funding": "https://github.com/sponsors/Drswith",
+  "homepage": "https://github.com/Drswith/unplugin-oss#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Drswith/unplugin-oss.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Drswith/unplugin-oss/issues"
+  },
+  "keywords": [
+    "unplugin",
+    "vite",
+    "webpack",
+    "rspack",
+    "rollup",
+    "rolldown",
+    "esbuild",
+    "farm"
+  ],
+  "exports": {
+    ".": "./dist/index.js",
+    "./api": "./dist/api.js",
+    "./esbuild": "./dist/esbuild.js",
+    "./farm": "./dist/farm.js",
+    "./rolldown": "./dist/rolldown.js",
+    "./rollup": "./dist/rollup.js",
+    "./rspack": "./dist/rspack.js",
+    "./vite": "./dist/vite.js",
+    "./webpack": "./dist/webpack.js",
+    "./package.json": "./package.json"
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/*.d.ts",
+        "./*"
+      ]
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=20.19.0"
+  },
+  "scripts": {
+    "lint": "eslint --cache .",
+    "lint:fix": "pnpm run lint --fix",
+    "build": "tsdown",
+    "dev": "tsdown --watch",
+    "test": "vitest",
+    "typecheck": "tsc --noEmit",
+    "release": "bumpp",
+    "prepublishOnly": "pnpm run build"
+  },
+  "dependencies": {
+    "unplugin": "^3.0.0"
+  },
+  "devDependencies": {
+    "@sxzz/eslint-config": "^8.0.0",
+    "@sxzz/prettier-config": "^2.3.1",
+    "@sxzz/test-utils": "^0.5.16",
+    "@types/node": "^25.6.0",
+    "bumpp": "^11.0.1",
+    "eslint": "^10.2.0",
+    "prettier": "^3.8.2",
+    "tsdown": "^0.22.0",
+    "tsdown-preset-sxzz": "^0.6.0",
+    "typescript": "^6.0.2",
+    "vitest": "^4.1.4"
+  },
+  "prettier": "@sxzz/prettier-config"
+}
