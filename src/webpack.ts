@@ -4,7 +4,7 @@
  * @module
  */
 
-import { Oss } from './index'
+import { Oss } from "./index";
 
 /**
  * Webpack plugin
@@ -19,6 +19,6 @@ import { Oss } from './index'
  * }
  * ```
  */
-const webpack = Oss.webpack as typeof Oss.webpack
-export default webpack
-export { webpack as 'module.exports' }
+const webpack = Oss.webpack as typeof Oss.webpack;
+export default webpack;
+export { webpack as "module.exports" };

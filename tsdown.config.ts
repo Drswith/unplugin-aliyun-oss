@@ -1,5 +1,5 @@
-import { lib } from 'tsdown-preset-sxzz'
+import { lib } from "tsdown-preset-sxzz";
 
 export default lib({
-  entry: 'shallow',
-})
+  entry: "shallow",
+});

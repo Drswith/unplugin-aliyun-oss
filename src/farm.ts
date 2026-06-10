@@ -4,7 +4,7 @@
  * @module
  */
 
-import { Oss } from './index'
+import { Oss } from "./index";
 
 /**
  * Farm plugin
@@ -19,6 +19,6 @@ import { Oss } from './index'
  * }
  * ```
  */
-const farm = Oss.farm as typeof Oss.farm
-export default farm
-export { farm as 'module.exports' }
+const farm = Oss.farm as typeof Oss.farm;
+export default farm;
+export { farm as "module.exports" };

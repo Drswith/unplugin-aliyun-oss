@@ -4,7 +4,7 @@
  * @module
  */
 
-import { Oss } from './index'
+import { Oss } from "./index";
 
 /**
  * Rspack plugin
@@ -19,6 +19,6 @@ import { Oss } from './index'
  * }
  * ```
  */
-const rspack = Oss.rspack as typeof Oss.rspack
-export default rspack
-export { rspack as 'module.exports' }
+const rspack = Oss.rspack as typeof Oss.rspack;
+export default rspack;
+export { rspack as "module.exports" };

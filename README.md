@@ -17,11 +17,11 @@ npm i -D unplugin-oss
 
 ```ts
 // vite.config.ts
-import Oss from 'unplugin-oss/vite'
+import Oss from "unplugin-oss/vite";
 
 export default defineConfig({
   plugins: [Oss()],
-})
+});
 ```
 
 <br></details>
@@ -31,11 +31,11 @@ export default defineConfig({
 
 ```ts
 // rollup.config.js
-import Oss from 'unplugin-oss/rollup'
+import Oss from "unplugin-oss/rollup";
 
 export default {
   plugins: [Oss()],
-}
+};
 ```
 
 <br></details>
@@ -45,11 +45,11 @@ export default {
 
 ```ts
 // rolldown.config.ts / tsdown.config.ts
-import Oss from 'unplugin-oss/rolldown'
+import Oss from "unplugin-oss/rolldown";
 
 export default {
   plugins: [Oss()],
-}
+};
 ```
 
 <br></details>
@@ -58,12 +58,12 @@ export default {
 <summary>esbuild</summary><br>
 
 ```ts
-import { build } from 'esbuild'
-import Oss from 'unplugin-oss/esbuild'
+import { build } from "esbuild";
+import Oss from "unplugin-oss/esbuild";
 
 build({
   plugins: [Oss()],
-})
+});
 ```
 
 <br></details>
@@ -73,12 +73,12 @@ build({
 
 ```js
 // webpack.config.js
-import Oss from 'unplugin-oss/webpack'
+import Oss from "unplugin-oss/webpack";
 
 export default {
   /* ... */
   plugins: [Oss()],
-}
+};
 ```
 
 <br></details>
@@ -88,12 +88,12 @@ export default {
 
 ```ts
 // rspack.config.js
-import Oss from 'unplugin-oss/rspack'
+import Oss from "unplugin-oss/rspack";
 
 export default {
   /* ... */
   plugins: [Oss()],
-}
+};
 ```
 
 <br></details>

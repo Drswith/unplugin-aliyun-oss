@@ -4,7 +4,7 @@
  * @module
  */
 
-import { Oss } from './index'
+import { Oss } from "./index";
 
 /**
  * Vite plugin
@@ -19,6 +19,6 @@ import { Oss } from './index'
  * })
  * ```
  */
-const vite = Oss.vite as typeof Oss.vite
-export default vite
-export { vite as 'module.exports' }
+const vite = Oss.vite as typeof Oss.vite;
+export default vite;
+export { vite as "module.exports" };

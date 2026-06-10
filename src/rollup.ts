@@ -4,7 +4,7 @@
  * @module
  */
 
-import { Oss } from './index'
+import { Oss } from "./index";
 
 /**
  * Rollup plugin
@@ -19,6 +19,6 @@ import { Oss } from './index'
  * }
  * ```
  */
-const rollup = Oss.rollup as typeof Oss.rollup
-export default rollup
-export { rollup as 'module.exports' }
+const rollup = Oss.rollup as typeof Oss.rollup;
+export default rollup;
+export { rollup as "module.exports" };

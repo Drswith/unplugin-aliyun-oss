@@ -4,7 +4,7 @@
  * @module
  */
 
-import { Oss } from './index'
+import { Oss } from "./index";
 
 /**
  * Esbuild plugin
@@ -17,6 +17,6 @@ import { Oss } from './index'
  * build({ plugins: [Oss()] })
 ```
  */
-const esbuild = Oss.esbuild as typeof Oss.esbuild
-export default esbuild
-export { esbuild as 'module.exports' }
+const esbuild = Oss.esbuild as typeof Oss.esbuild;
+export default esbuild;
+export { esbuild as "module.exports" };
