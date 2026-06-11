@@ -94,15 +94,25 @@ interface Options {
 }
 ```
 
-- `region`, `accessKeyId`, `accessKeySecret`, and `bucket` are required unless `test: true`.
-- `from` supports glob patterns such as `dist/**` and `dist/**/*`. Directories matched by the glob are ignored before uploading, so only files are sent to OSS.
-- `dist` is used as the OSS object key prefix.
-- `buildRoot` controls how local paths are converted to OSS object keys. Vite uses `build.outDir`; Webpack uses `output.path` when `buildRoot` is not provided.
-- `setOssPath` can override the generated OSS object key for each file.
-- `overwrite: false` skips existing objects and sends `x-oss-forbid-overwrite`.
-- `test: true` is a dry run. It discovers files and prints target paths without creating an OSS client.
-- `verbose: true` prints colored grouped logs with source file, OSS key, object status, action, result URL, and failures. Existing objects are logged as `skipped` when `overwrite: false`, so skipped files are not reported as `uploading`.
-- `quitWpOnError` makes Webpack builds fail when an upload fails.
+| Option | Required | Default | Description |
+| --- | --- | --- | --- |
+| `from` | Yes | - | Files to upload. Supports glob patterns such as `dist/**` and `dist/**/*`. Directories matched by the glob are ignored before uploading, so only files are sent to OSS. |
+| `region` | Yes, unless `test: true` | - | Aliyun OSS region, for example `oss-cn-hangzhou`. |
+| `accessKeyId` | Yes, unless `test: true` | - | Aliyun access key id. |
+| `accessKeySecret` | Yes, unless `test: true` | - | Aliyun access key secret. |
+| `bucket` | Yes, unless `test: true` | - | Aliyun OSS bucket name. |
+| `test` | No | `false` | Dry run mode. Files are discovered and target paths are printed without creating an OSS client. |
+| `verbose` | No | `true` | Prints colored grouped logs with source file, OSS key, object status, action, result URL, and failures. Existing objects are logged as `skipped` when `overwrite: false`, so skipped files are not reported as `uploading`. |
+| `dist` | No | `""` | OSS object key prefix. |
+| `buildRoot` | No | `"."` | Controls how local paths are converted to OSS object keys. Vite uses `build.outDir`; Webpack uses `output.path` when `buildRoot` is not provided. |
+| `deleteOrigin` | No | `false` | Deletes local files after successful upload. |
+| `deleteEmptyDir` | No | `false` | Removes empty parent directories after deleting uploaded files. |
+| `timeout` | No | `60000` | OSS request timeout in milliseconds. |
+| `setOssPath` | No | - | Overrides the generated OSS object key for each file. Return `false`, `null`, or `undefined` to skip that file. |
+| `overwrite` | No | `true` | Overwrites existing OSS objects by default. Set `overwrite: false` to skip existing objects and send `x-oss-forbid-overwrite`. |
+| `quitWpOnError` | No | `false` | Makes Webpack builds fail when an upload fails. |
+| `version` | No | `""` | Version value passed to `setVersion` after successful uploads. |
+| `setVersion` | No | - | Callback used to publish version metadata after successful uploads. |
 
 ## TODO
 
