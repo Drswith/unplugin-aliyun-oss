@@ -1,6 +1,6 @@
 {
   "name": "unplugin-aliyun-oss",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Aliyun OSS plugin powered by unplugin.",
   "keywords": [
     "esbuild",
