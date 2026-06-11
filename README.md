@@ -95,7 +95,7 @@ interface Options {
 ```
 
 - `region`, `accessKeyId`, `accessKeySecret`, and `bucket` are required unless `test: true`.
-- `from` supports glob patterns such as `dist/**/*`.
+- `from` supports glob patterns such as `dist/**` and `dist/**/*`. Directories matched by the glob are ignored before uploading, so only files are sent to OSS.
 - `dist` is used as the OSS object key prefix.
 - `buildRoot` controls how local paths are converted to OSS object keys. Vite uses `build.outDir`; Webpack uses `output.path` when `buildRoot` is not provided.
 - `setOssPath` can override the generated OSS object key for each file.

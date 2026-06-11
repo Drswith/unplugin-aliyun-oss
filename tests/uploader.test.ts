@@ -3,7 +3,7 @@ import os from "node:os";
 import path from "node:path";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { resolveOptions } from "../src/core/options";
-import { uploadFiles, type OssClient } from "../src/core/uploader";
+import { uploadFiles, uploadMatchedFiles, type OssClient } from "../src/core/uploader";
 
 const tmpDirs: string[] = [];
 
@@ -12,6 +12,49 @@ afterEach(async () => {
 });
 
 describe("uploader", () => {
+  it("filters directories from glob matches before uploading", async () => {
+    const root = await createTmpDir();
+    const outDir = path.join(root, "dist");
+    const assetFile = path.join(outDir, "assets", "app.js");
+    const entryFile = path.join(outDir, "index.html");
+    await fs.mkdir(path.dirname(assetFile), { recursive: true });
+    await fs.writeFile(assetFile, "export const app = true;");
+    await fs.writeFile(entryFile, '<div id="app"></div>');
+
+    const put = vi.fn(async (ossPath: string) => ({ url: `https://example.com//${ossPath}` }));
+    const client: OssClient = {
+      get: vi.fn(async () => {
+        const error = new Error("not found") as Error & { code: string };
+        error.code = "NoSuchKey";
+        throw error;
+      }),
+      put,
+    };
+
+    await uploadMatchedFiles(
+      resolveOptions({
+        from: `${outDir}/**`,
+        region: "oss-cn-hangzhou",
+        accessKeyId: "id",
+        accessKeySecret: "secret",
+        bucket: "bucket",
+        buildRoot: outDir,
+        dist: "/cdn",
+        verbose: false,
+      }),
+      {
+        framework: "vite",
+        clientFactory: () => client,
+        logger: silentLogger(),
+      },
+    );
+
+    const uploadedOssPaths = put.mock.calls.map(([ossPath]) => ossPath).sort();
+    const uploadedLocalPaths = put.mock.calls.map(([, filePath]) => filePath).sort();
+    expect(uploadedOssPaths).toEqual(["/cdn/assets/app.js", "/cdn/index.html"]);
+    expect(uploadedLocalPaths).toEqual([assetFile, entryFile].sort());
+  });
+
   it("uploads files with dist prefix and relative build path", async () => {
     const root = await createTmpDir();
     const outDir = path.join(root, "dist");
