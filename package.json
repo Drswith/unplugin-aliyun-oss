@@ -27,24 +27,61 @@
     "dist"
   ],
   "type": "module",
+  "types": "./dist/index.d.mts",
   "typesVersions": {
     "*": {
       "*": [
-        "./dist/*.d.ts",
+        "./dist/*.d.mts",
         "./*"
       ]
     }
   },
   "exports": {
-    ".": "./dist/index.js",
-    "./api": "./dist/api.js",
-    "./esbuild": "./dist/esbuild.js",
-    "./farm": "./dist/farm.js",
-    "./rolldown": "./dist/rolldown.js",
-    "./rollup": "./dist/rollup.js",
-    "./rspack": "./dist/rspack.js",
-    "./vite": "./dist/vite.js",
-    "./webpack": "./dist/webpack.js",
+    ".": {
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs",
+      "default": "./dist/index.mjs"
+    },
+    "./api": {
+      "types": "./dist/api.d.mts",
+      "import": "./dist/api.mjs",
+      "default": "./dist/api.mjs"
+    },
+    "./esbuild": {
+      "types": "./dist/esbuild.d.mts",
+      "import": "./dist/esbuild.mjs",
+      "default": "./dist/esbuild.mjs"
+    },
+    "./farm": {
+      "types": "./dist/farm.d.mts",
+      "import": "./dist/farm.mjs",
+      "default": "./dist/farm.mjs"
+    },
+    "./rolldown": {
+      "types": "./dist/rolldown.d.mts",
+      "import": "./dist/rolldown.mjs",
+      "default": "./dist/rolldown.mjs"
+    },
+    "./rollup": {
+      "types": "./dist/rollup.d.mts",
+      "import": "./dist/rollup.mjs",
+      "default": "./dist/rollup.mjs"
+    },
+    "./rspack": {
+      "types": "./dist/rspack.d.mts",
+      "import": "./dist/rspack.mjs",
+      "default": "./dist/rspack.mjs"
+    },
+    "./vite": {
+      "types": "./dist/vite.d.mts",
+      "import": "./dist/vite.mjs",
+      "default": "./dist/vite.mjs"
+    },
+    "./webpack": {
+      "types": "./dist/webpack.d.mts",
+      "import": "./dist/webpack.mjs",
+      "default": "./dist/webpack.mjs"
+    },
     "./package.json": "./package.json"
   },
   "publishConfig": {
@@ -57,24 +94,41 @@
     "format:check": "oxfmt --check",
     "build": "tsdown",
     "dev": "tsdown --watch",
-    "test": "vitest",
+    "test": "vitest run",
     "typecheck": "tsc --noEmit",
     "release": "bumpp",
     "prepublishOnly": "pnpm run build"
   },
   "dependencies": {
+    "ali-oss": "6.23.0",
+    "glob": "^13.0.6",
+    "picocolors": "^1.1.1",
     "unplugin": "^3.0.0"
   },
   "devDependencies": {
-    "@sxzz/test-utils": "^0.5.16",
+    "@types/ali-oss": "^6.23.3",
     "@types/node": "^25.6.0",
     "bumpp": "^11.0.1",
     "oxfmt": "^0.54.0",
     "oxlint": "^1.69.0",
     "tsdown": "^0.22.0",
-    "tsdown-preset-sxzz": "^0.6.0",
     "typescript": "^6.0.2",
-    "vitest": "^4.1.4"
+    "vite": "^4.5.0",
+    "vitest": "^0.34.6",
+    "webpack": "^5.107.2",
+    "webpack4": "npm:webpack@^4.47.0"
+  },
+  "peerDependencies": {
+    "vite": "^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0",
+    "webpack": "^4.0.0 || ^5.0.0"
+  },
+  "peerDependenciesMeta": {
+    "vite": {
+      "optional": true
+    },
+    "webpack": {
+      "optional": true
+    }
   },
   "engines": {
     "node": ">=20.19.0"

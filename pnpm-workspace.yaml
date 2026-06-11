@@ -2,7 +2,13 @@ packages: []
 
 allowBuilds:
   esbuild: false
+  fsevents: false
+
+peerDependencyRules:
+  allowedVersions:
+    terser-webpack-plugin>webpack: ^5.0.0
 
 trustPolicy: no-downgrade
 trustPolicyExclude:
   - chokidar@4.0.3
+  - rollup@3.30.0
