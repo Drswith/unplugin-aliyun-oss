@@ -1,7 +1,7 @@
 {
-  "name": "unplugin-oss",
+  "name": "unplugin-aliyun-oss",
   "version": "0.0.1",
-  "description": "OSS plugin powered by unplugin.",
+  "description": "Aliyun OSS plugin powered by unplugin.",
   "keywords": [
     "esbuild",
     "farm",
