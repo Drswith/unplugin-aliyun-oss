@@ -12,7 +12,7 @@ import { Oss } from "./index";
  * @example
  * ```ts
  * // rollup.config.js
- * import Oss from 'unplugin-oss/rollup'
+ * import Oss from 'unplugin-aliyun-oss/rollup'
  *
  * export default {
  *   plugins: [Oss()],

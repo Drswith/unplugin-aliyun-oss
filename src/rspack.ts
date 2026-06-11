@@ -12,7 +12,7 @@ import { Oss } from "./index";
  * @example
  * ```js
  * // rspack.config.js
- * import Oss from 'unplugin-oss/rspack'
+ * import Oss from 'unplugin-aliyun-oss/rspack'
  *
  * export default {
  *   plugins: [Oss()],

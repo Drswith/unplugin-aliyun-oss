@@ -110,7 +110,7 @@ describe("builder adapters", () => {
 async function createTmpDir(): Promise<string> {
   const baseDir = path.join(process.cwd(), "node_modules", ".tmp");
   await fs.mkdir(baseDir, { recursive: true });
-  const dir = await fs.mkdtemp(path.join(baseDir, "unplugin-oss-builder-"));
+  const dir = await fs.mkdtemp(path.join(baseDir, "unplugin-aliyun-oss-builder-"));
   tmpDirs.push(dir);
   return dir;
 }

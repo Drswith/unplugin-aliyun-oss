@@ -12,7 +12,7 @@ import { Oss } from "./index";
  * @example
  * ```ts
  * // rolldown.config.js
- * import Oss from 'unplugin-oss/rolldown'
+ * import Oss from 'unplugin-aliyun-oss/rolldown'
  *
  * export default {
  *   plugins: [Oss()],

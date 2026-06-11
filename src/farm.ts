@@ -12,7 +12,7 @@ import { Oss } from "./index";
  * @example
  * ```ts
  * // farm.config.js
- * import Oss from 'unplugin-oss/farm'
+ * import Oss from 'unplugin-aliyun-oss/farm'
  *
  * export default {
  *   plugins: [Oss()],

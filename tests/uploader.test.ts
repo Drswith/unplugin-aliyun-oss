@@ -21,7 +21,9 @@ describe("uploader", () => {
     await fs.writeFile(assetFile, "export const app = true;");
     await fs.writeFile(entryFile, '<div id="app"></div>');
 
-    const put = vi.fn(async (ossPath: string) => ({ url: `https://example.com//${ossPath}` }));
+    const put = vi.fn(async (ossPath: string, _file: string) => ({
+      url: `https://example.com//${ossPath}`,
+    }));
     const client: OssClient = {
       get: vi.fn(async () => {
         const error = new Error("not found") as Error & { code: string };
@@ -62,7 +64,9 @@ describe("uploader", () => {
     await fs.mkdir(path.dirname(file), { recursive: true });
     await fs.writeFile(file, "export const app = true;");
 
-    const put = vi.fn(async (ossPath: string) => ({ url: `https://example.com//${ossPath}` }));
+    const put = vi.fn(async (ossPath: string, _file: string) => ({
+      url: `https://example.com//${ossPath}`,
+    }));
     const client: OssClient = {
       get: vi.fn(async () => {
         const error = new Error("not found") as Error & { code: string };
@@ -148,7 +152,7 @@ describe("uploader", () => {
     );
 
     const output = stripAnsi(logger.logs.join("\n"));
-    expect(output).toContain("[unplugin-oss] Uploading to Aliyun OSS (1 file)");
+    expect(output).toContain("[unplugin-aliyun-oss] Uploading to Aliyun OSS (1 file)");
     expect(output).toContain("[1/1]");
     expect(output).toContain(file);
     expect(output).toContain("oss: /cdn/assets/app.js");
@@ -307,7 +311,7 @@ describe("uploader", () => {
 });
 
 async function createTmpDir(): Promise<string> {
-  const dir = await fs.mkdtemp(path.join(os.tmpdir(), "unplugin-oss-"));
+  const dir = await fs.mkdtemp(path.join(os.tmpdir(), "unplugin-aliyun-oss-"));
   tmpDirs.push(dir);
   return dir;
 }

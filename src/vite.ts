@@ -12,7 +12,7 @@ import { Oss } from "./index";
  * @example
  * ```ts
  * // vite.config.ts
- * import Oss from 'unplugin-oss/vite'
+ * import Oss from 'unplugin-aliyun-oss/vite'
  *
  * export default defineConfig({
  *   plugins: [Oss()],

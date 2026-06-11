@@ -12,7 +12,7 @@ import { Oss } from "./index";
  * @example
  * ```js
  * // webpack.config.js
- * import Oss from 'unplugin-oss/webpack'
+ * import Oss from 'unplugin-aliyun-oss/webpack'
  *
  * export default {
  *   plugins: [Oss()],

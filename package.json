@@ -12,15 +12,15 @@
     "vite",
     "webpack"
   ],
-  "homepage": "https://github.com/Drswith/unplugin-oss#readme",
+  "homepage": "https://github.com/Drswith/unplugin-aliyun-oss#readme",
   "bugs": {
-    "url": "https://github.com/Drswith/unplugin-oss/issues"
+    "url": "https://github.com/Drswith/unplugin-aliyun-oss/issues"
   },
   "license": "MIT",
   "author": "Drswith <540628938@qq.com>",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Drswith/unplugin-oss.git"
+    "url": "git+https://github.com/Drswith/unplugin-aliyun-oss.git"
   },
   "funding": "https://github.com/sponsors/Drswith",
   "files": [

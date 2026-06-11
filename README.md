@@ -1,4 +1,4 @@
-# unplugin-oss
+# unplugin-aliyun-oss
 
 [![npm version][npm-version-src]][npm-version-href]
 [![npm downloads][npm-downloads-src]][npm-downloads-href]
@@ -15,7 +15,7 @@ Upload build assets to Aliyun OSS after bundling. Powered by [unplugin](https://
 ## Installation
 
 ```bash
-npm i -D unplugin-oss
+npm i -D unplugin-aliyun-oss
 ```
 
 <details>
@@ -24,7 +24,7 @@ npm i -D unplugin-oss
 ```ts
 // vite.config.ts
 import { defineConfig } from "vite";
-import Oss from "unplugin-oss/vite";
+import Oss from "unplugin-aliyun-oss/vite";
 
 export default defineConfig({
   plugins: [
@@ -48,7 +48,7 @@ export default defineConfig({
 ```js
 // webpack.config.js
 import path from "node:path";
-import Oss from "unplugin-oss/webpack";
+import Oss from "unplugin-aliyun-oss/webpack";
 
 export default {
   output: {
@@ -118,9 +118,9 @@ interface Options {
 
 <!-- Badges -->
 
-[npm-version-src]: https://img.shields.io/npm/v/unplugin-oss.svg
-[npm-version-href]: https://npmjs.com/package/unplugin-oss
-[npm-downloads-src]: https://img.shields.io/npm/dm/unplugin-oss
-[npm-downloads-href]: https://www.npmcharts.com/compare/unplugin-oss?interval=30
-[unit-test-src]: https://github.com/Drswith/unplugin-oss/actions/workflows/unit-test.yml/badge.svg
-[unit-test-href]: https://github.com/Drswith/unplugin-oss/actions/workflows/unit-test.yml
+[npm-version-src]: https://img.shields.io/npm/v/unplugin-aliyun-oss.svg
+[npm-version-href]: https://npmjs.com/package/unplugin-aliyun-oss
+[npm-downloads-src]: https://img.shields.io/npm/dm/unplugin-aliyun-oss
+[npm-downloads-href]: https://www.npmcharts.com/compare/unplugin-aliyun-oss?interval=30
+[unit-test-src]: https://github.com/Drswith/unplugin-aliyun-oss/actions/workflows/unit-test.yml/badge.svg
+[unit-test-href]: https://github.com/Drswith/unplugin-aliyun-oss/actions/workflows/unit-test.yml

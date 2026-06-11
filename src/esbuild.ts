@@ -12,7 +12,7 @@ import { Oss } from "./index";
  * @example
  * ```ts
  * import { build } from 'esbuild'
- * import Oss from 'unplugin-oss/esbuild'
+ * import Oss from 'unplugin-aliyun-oss/esbuild'
  * 
  * build({ plugins: [Oss()] })
 ```

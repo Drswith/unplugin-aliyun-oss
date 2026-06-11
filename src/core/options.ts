@@ -81,13 +81,15 @@ const defaults = {
 
 export function resolveOptions(options: Options): OptionsResolved {
   if (!options || !options.from || (Array.isArray(options.from) && options.from.length === 0)) {
-    throw new Error("[unplugin-oss] option `from` is required.");
+    throw new Error("[unplugin-aliyun-oss] option `from` is required.");
   }
 
   if (!options.test) {
     for (const key of ["region", "accessKeyId", "accessKeySecret", "bucket"] as const) {
       if (!options[key]) {
-        throw new Error(`[unplugin-oss] option \`${key}\` is required unless \`test\` is enabled.`);
+        throw new Error(
+          `[unplugin-aliyun-oss] option \`${key}\` is required unless \`test\` is enabled.`,
+        );
       }
     }
   }

@@ -4,7 +4,7 @@ import { resolveOptions, type Options } from "./core/options";
 import { uploadMatchedFiles } from "./core/uploader";
 
 export const Oss: UnpluginInstance<Options, false> = createUnplugin((rawOptions, meta) => {
-  const name = "unplugin-oss";
+  const name = "unplugin-aliyun-oss";
 
   switch (meta.framework) {
     case "vite":

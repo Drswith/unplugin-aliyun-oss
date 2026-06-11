@@ -68,7 +68,7 @@ export interface UploadResult {
   failed: FailedFile[];
 }
 
-const PLUGIN_PREFIX = "[unplugin-oss]";
+const PLUGIN_PREFIX = "[unplugin-aliyun-oss]";
 
 export async function uploadMatchedFiles(
   options: OptionsResolved,

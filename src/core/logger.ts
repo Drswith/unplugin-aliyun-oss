@@ -3,7 +3,7 @@ import { slash } from "./path";
 
 export type Logger = Pick<Console, "error" | "log" | "warn">;
 
-const PREFIX = pc.cyan("[unplugin-oss]");
+const PREFIX = pc.cyan("[unplugin-aliyun-oss]");
 
 export function logNoFiles(logger: Logger): void {
   logger.warn(`${PREFIX} ${pc.yellow("No files matched, upload skipped.")}`);
