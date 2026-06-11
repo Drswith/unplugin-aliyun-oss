@@ -1,6 +1,6 @@
 {
   "name": "unplugin-aliyun-oss",
-  "version": "0.0.4",
+  "version": "1.0.0",
   "description": "Aliyun OSS plugin powered by unplugin.",
   "keywords": [
     "esbuild",
@@ -106,11 +106,15 @@
     "unplugin": "^3.0.0"
   },
   "devDependencies": {
+    "@rspack/core": "^2.0.8",
     "@types/ali-oss": "^6.23.3",
     "@types/node": "^25.6.0",
     "bumpp": "^11.0.1",
+    "esbuild": "^0.27.7",
     "oxfmt": "^0.54.0",
     "oxlint": "^1.69.0",
+    "rolldown": "^1.0.0",
+    "rollup": "^4.61.1",
     "tsdown": "^0.22.0",
     "typescript": "^6.0.2",
     "vite": "^4.5.0",
@@ -119,10 +123,26 @@
     "webpack4": "npm:webpack@^4.47.0"
   },
   "peerDependencies": {
+    "@rspack/core": "^1.0.0 || ^2.0.0",
+    "esbuild": ">=0.18.0",
+    "rolldown": "^1.0.0",
+    "rollup": "^3.0.0 || ^4.0.0",
     "vite": "^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0",
     "webpack": "^4.0.0 || ^5.0.0"
   },
   "peerDependenciesMeta": {
+    "@rspack/core": {
+      "optional": true
+    },
+    "esbuild": {
+      "optional": true
+    },
+    "rolldown": {
+      "optional": true
+    },
+    "rollup": {
+      "optional": true
+    },
     "vite": {
       "optional": true
     },
