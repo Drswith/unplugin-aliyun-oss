@@ -1,7 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import OSS from "ali-oss";
-import { glob } from "glob";
+import { glob } from "tinyglobby";
 import {
   logDryRunFile,
   logDryRunStart,
@@ -75,7 +75,7 @@ export async function uploadMatchedFiles(
   runtime: UploadRuntime,
 ): Promise<UploadResult> {
   const logger = runtime.logger ?? console;
-  const files = await glob(options.from, { nodir: true });
+  const files = await glob(options.from);
 
   if (files.length === 0) {
     if (options.verbose) {

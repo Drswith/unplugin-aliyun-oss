@@ -23,6 +23,9 @@ Rollup, Rolldown, esbuild, Rspack, and Farm.
 
 ## Support
 
+The plugin runtime supports Node.js `>=20.19.0`. This matches the minimum Node
+version required by the current unplugin and builder adapter toolchain.
+
 | Builder  | Import                         | Notes                                                                                   |
 | -------- | ------------------------------ | --------------------------------------------------------------------------------------- |
 | Vite     | `unplugin-aliyun-oss/vite`     | Vite `^4` to `^8`; output root is inferred from `build.outDir`.                         |
@@ -444,6 +447,9 @@ interface Options {
 | Existing OSS objects should not be replaced       | Set `overwrite: false`.                                                                                                                |
 
 ## Development
+
+This repository uses Node.js `20.19.0` for local development. Use the version
+declared in `.node-version`.
 
 ```bash
 pnpm install
