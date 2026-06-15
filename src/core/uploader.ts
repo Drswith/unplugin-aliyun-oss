@@ -75,7 +75,7 @@ export async function uploadMatchedFiles(
   runtime: UploadRuntime,
 ): Promise<UploadResult> {
   const logger = runtime.logger ?? console;
-  const files = await glob(normalizeGlobPatterns(options.from));
+  const files = await glob(normalizeGlobPatterns(options.from), { absolute: true });
 
   if (files.length === 0) {
     if (options.verbose) {
@@ -100,17 +100,6 @@ function normalizeGlobPattern(pattern: string): string {
   return pattern.replace(/\\/g, "/");
 }
 
-function resolveLocalFilePath(file: string): string {
-  const normalizedFile = slash(file);
-  const driveAbsolute = normalizedFile.match(/.*([A-Za-z]:\/.*)$/);
-
-  if (driveAbsolute) {
-    return path.normalize(driveAbsolute[1]);
-  }
-
-  return path.resolve(file);
-}
-
 export async function uploadFiles(
   files: string[],
   options: OptionsResolved,
@@ -131,7 +120,7 @@ export async function uploadFiles(
     : (runtime.clientFactory?.(options) ?? createAliOssClient(options));
 
   for (const [index, file] of files.entries()) {
-    const filePath = resolveLocalFilePath(file);
+    const filePath = path.resolve(file);
     const ossPath = getOssPath(filePath, options, basePath);
     const current = index + 1;
 
@@ -247,7 +236,7 @@ export function getBasePath(options: OptionsResolved, runtime: UploadRuntime): s
   const root = options.buildRootProvided
     ? options.buildRoot
     : runtime.outputPath || options.buildRoot;
-  const absoluteRoot = resolveLocalFilePath(root);
+  const absoluteRoot = path.resolve(root);
 
   return stripTrailingSlash(slash(absoluteRoot));
 }
@@ -289,15 +278,13 @@ async function cleanEmptyParents(filePath: string, basePath: string): Promise<vo
 }
 
 function getRelativeObjectPath(filePath: string, basePath: string): string {
-  const normalizedFile = slash(resolveLocalFilePath(filePath));
-  const normalizedBase = stripTrailingSlash(slash(resolveLocalFilePath(basePath)));
-  const prefix = `${normalizedBase}/`;
+  const relative = path.relative(path.resolve(basePath), path.resolve(filePath));
 
-  if (normalizedFile.startsWith(prefix)) {
-    return `/${normalizedFile.slice(prefix.length)}`;
+  if (!relative || relative.startsWith("..") || path.isAbsolute(relative)) {
+    return "";
   }
 
-  return "";
+  return `/${slash(relative)}`;
 }
 
 function shouldAbortOnUploadError(options: OptionsResolved, runtime: UploadRuntime): boolean {

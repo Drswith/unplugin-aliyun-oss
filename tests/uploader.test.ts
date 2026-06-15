@@ -104,47 +104,6 @@ describe("uploader", () => {
     );
   });
 
-  it("normalizes drive-absolute paths returned with a leading slash", async () => {
-    const put = vi.fn(async (ossPath: string, _file: string) => ({
-      url: `https://example.com//${ossPath}`,
-    }));
-    const client: OssClient = {
-      get: vi.fn(async () => {
-        const error = new Error("not found") as Error & { code: string };
-        error.code = "NoSuchKey";
-        throw error;
-      }),
-      put,
-    };
-
-    await uploadFiles(
-      ["D:/C:/Users/runner/AppData/Local/Temp/unplugin-aliyun-oss/dist/app.js"],
-      resolveOptions({
-        from: "dist/**/*",
-        region: "oss-cn-hangzhou",
-        accessKeyId: "id",
-        accessKeySecret: "secret",
-        bucket: "bucket",
-        buildRoot: "C:/Users/runner/AppData/Local/Temp/unplugin-aliyun-oss/dist",
-        dist: "/cdn",
-        verbose: false,
-      }),
-      {
-        framework: "vite",
-        clientFactory: () => client,
-        logger: silentLogger(),
-      },
-    );
-
-    expect(put).toHaveBeenCalledWith(
-      "/cdn/app.js",
-      path.normalize("C:/Users/runner/AppData/Local/Temp/unplugin-aliyun-oss/dist/app.js"),
-      expect.objectContaining({
-        timeout: expect.any(Number),
-      }),
-    );
-  });
-
   it("uploads files with dist prefix and relative build path", async () => {
     const root = await createTmpDir();
     const outDir = path.join(root, "dist");
