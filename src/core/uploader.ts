@@ -100,6 +100,17 @@ function normalizeGlobPattern(pattern: string): string {
   return pattern.replace(/\\/g, "/");
 }
 
+function resolveLocalFilePath(file: string): string {
+  const normalizedFile = slash(file);
+  const driveAbsolute = normalizedFile.match(/.*([A-Za-z]:\/.*)$/);
+
+  if (driveAbsolute) {
+    return path.normalize(driveAbsolute[1]);
+  }
+
+  return path.resolve(file);
+}
+
 export async function uploadFiles(
   files: string[],
   options: OptionsResolved,
@@ -120,7 +131,7 @@ export async function uploadFiles(
     : (runtime.clientFactory?.(options) ?? createAliOssClient(options));
 
   for (const [index, file] of files.entries()) {
-    const filePath = path.resolve(file);
+    const filePath = resolveLocalFilePath(file);
     const ossPath = getOssPath(filePath, options, basePath);
     const current = index + 1;
 
@@ -236,7 +247,7 @@ export function getBasePath(options: OptionsResolved, runtime: UploadRuntime): s
   const root = options.buildRootProvided
     ? options.buildRoot
     : runtime.outputPath || options.buildRoot;
-  const absoluteRoot = path.isAbsolute(root) ? root : path.resolve(root);
+  const absoluteRoot = resolveLocalFilePath(root);
 
   return stripTrailingSlash(slash(absoluteRoot));
 }
@@ -278,8 +289,8 @@ async function cleanEmptyParents(filePath: string, basePath: string): Promise<vo
 }
 
 function getRelativeObjectPath(filePath: string, basePath: string): string {
-  const normalizedFile = slash(path.resolve(filePath));
-  const normalizedBase = stripTrailingSlash(slash(path.resolve(basePath)));
+  const normalizedFile = slash(resolveLocalFilePath(filePath));
+  const normalizedBase = stripTrailingSlash(slash(resolveLocalFilePath(basePath)));
   const prefix = `${normalizedBase}/`;
 
   if (normalizedFile.startsWith(prefix)) {
