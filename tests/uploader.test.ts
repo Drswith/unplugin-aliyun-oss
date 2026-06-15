@@ -57,6 +57,53 @@ describe("uploader", () => {
     expect(uploadedLocalPaths).toEqual([assetFile, entryFile].sort());
   });
 
+  it("matches glob patterns with Windows path separators", async () => {
+    const root = await createTmpDir();
+    const outDir = path.join(root, "dist");
+    const file = path.join(outDir, "app.js");
+    await fs.mkdir(outDir, { recursive: true });
+    await fs.writeFile(file, "export const app = true;");
+
+    const put = vi.fn(async (ossPath: string, _file: string) => ({
+      url: `https://example.com//${ossPath}`,
+    }));
+    const client: OssClient = {
+      get: vi.fn(async () => {
+        const error = new Error("not found") as Error & { code: string };
+        error.code = "NoSuchKey";
+        throw error;
+      }),
+      put,
+    };
+    const windowsPattern = `${outDir.replaceAll(path.sep, "\\")}\\**\\*`;
+
+    await uploadMatchedFiles(
+      resolveOptions({
+        from: windowsPattern,
+        region: "oss-cn-hangzhou",
+        accessKeyId: "id",
+        accessKeySecret: "secret",
+        bucket: "bucket",
+        buildRoot: outDir,
+        dist: "/cdn",
+        verbose: false,
+      }),
+      {
+        framework: "vite",
+        clientFactory: () => client,
+        logger: silentLogger(),
+      },
+    );
+
+    expect(put).toHaveBeenCalledWith(
+      "/cdn/app.js",
+      file,
+      expect.objectContaining({
+        timeout: expect.any(Number),
+      }),
+    );
+  });
+
   it("uploads files with dist prefix and relative build path", async () => {
     const root = await createTmpDir();
     const outDir = path.join(root, "dist");

@@ -75,7 +75,7 @@ export async function uploadMatchedFiles(
   runtime: UploadRuntime,
 ): Promise<UploadResult> {
   const logger = runtime.logger ?? console;
-  const files = await glob(options.from);
+  const files = await glob(normalizeGlobPatterns(options.from));
 
   if (files.length === 0) {
     if (options.verbose) {
@@ -86,6 +86,18 @@ export async function uploadMatchedFiles(
   }
 
   return uploadFiles(files, options, runtime);
+}
+
+function normalizeGlobPatterns(patterns: string | string[]): string | string[] {
+  if (Array.isArray(patterns)) {
+    return patterns.map(normalizeGlobPattern);
+  }
+
+  return normalizeGlobPattern(patterns);
+}
+
+function normalizeGlobPattern(pattern: string): string {
+  return pattern.replace(/\\/g, "/");
 }
 
 export async function uploadFiles(
